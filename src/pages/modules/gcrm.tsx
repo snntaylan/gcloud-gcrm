@@ -1,20 +1,25 @@
 import * as React from "react"
 
 import {
-  Box, Button, Card, CardActions, CardContent, Grid, Typography
+  Avatar,
+  Box, IconButton, Typography
 } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import {useAuthStore, useLayoutStore} from "gstore/store";
+import { useAuthStore, useLayoutStore } from "gstore/store";
 // import { Business, List, Person } from '@mui/icons-material';
 import BusinessIcon from '@mui/icons-material/Business';
 import ListIcon from '@mui/icons-material/List';
+// import Header from "components/common/header";
+import Header from "components/header";
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
 
 interface IGCRMProps { }
 
 const GCRM: React.FunctionComponent<IGCRMProps> = () => {
-  const navigate = useNavigate();
   const { currentUser, authToken } = useAuthStore();
   const { setNavItems } = useLayoutStore();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     setNavItems([
@@ -81,18 +86,22 @@ const GCRM: React.FunctionComponent<IGCRMProps> = () => {
     ])
   }, [])
 
+  const handleClick = () => {
+    navigate("/gcloud/olcer/home");
+  }
+
   return (
-    <Box>
-      GCrm Module Microfrontend has been loaded...
-      <h2>Login Details:</h2>
-      <p>Name: {currentUser?.name}</p>
-      <p>Role: {currentUser?.role}</p>
-      <p>Email: {currentUser?.email}</p>
-      <p>Company: {currentUser?.company}</p>
-      <p>Token: {authToken}</p>
-      {/* Auth TOken: {authTOken} */}
-      {/* <button onClick={increment}>Add Count</button> */}
-    </Box>
+    <>
+      <Box>
+        GCrm Module Microfrontend has been loaded...
+        <h2>Login Details:</h2>
+        <p>Name: {currentUser?.name}</p>
+        <p>Role: {currentUser?.role}</p>
+        <p>Email: {currentUser?.email}</p>
+        <p>Company: {currentUser?.company}</p>
+        <p>Token: {authToken}</p>
+      </Box>
+    </>
   )
 }
 

@@ -13,9 +13,11 @@ const GCRModule = React.lazy(() => import("../pages/modules/gcrm"))
 
 const RouterConfig = () => {
   const isAuthenticated = true;
-  
+
   return (
-    <></>
+    <Routes>
+      <Route path={"/"} element={<GCRModule />}></Route>
+    </Routes>
   )
 }
 
